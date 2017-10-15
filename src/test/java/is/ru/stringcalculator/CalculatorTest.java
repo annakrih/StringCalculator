@@ -69,6 +69,11 @@ public class CalculatorTest {
     public void testIgnoreBigNumbers() {
         assertEquals(2, Calculator.add("1001,2"));
     }
+    
+    @Test
+    public void testIgnoreBigNumbers2() {
+        assertEquals(1002, Calculator.add("1000,2"));
+    }
 }
 
 

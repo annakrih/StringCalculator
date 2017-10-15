@@ -42,6 +42,12 @@ public class CalculatorTest {
     public void testCommaThenNewLineSeperator() {
         assertEquals(6, Calculator.add("1\n2,3"));
     }
+    
+    //Liður 4
+    @Test (expected = IllegalArgumentException.class)
+    public void testNegNum() {
+        assertEquals("Negatives not allowed: -1", Calculator.add("-1,2"));
+    }
 }
 
 

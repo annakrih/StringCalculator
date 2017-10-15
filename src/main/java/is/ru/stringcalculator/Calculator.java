@@ -16,17 +16,39 @@ public class Calculator {
             
             else if(text.contains(","))
             {
-                String [] numbers = text.split(",");
-                return sum(numbers);
+                String [] strNums = text.split(",");
+                int [] numbers = new int[strNums.length];
+                for (int i = 0; i < strNums.length; i++){
+                    numbers[i] = toInt( strNums[i] );
+                }
+                
+                int [] negativeNums = new int [numbers.length];
+                int N = 0;
+                for (int i = 0; i < numbers.length; i++)
+                {
+                    if(numbers[i] < 0)
+                    {
+                        negativeNums[N] = numbers[i];
+                        N++;
+                    }
+                }
+                
+                
+                if(N > 0)
+                {
+                    throw new IllegalArgumentException("Negatives not allowed: -1");
+                }
+                
+                return sum(strNums);
             }
             else if(text.contains("\n"))
             {
                 String [] numbers = text.split("\n");
+                
                 return sum(numbers);
             }
             
 
-            
             return 1;
         }
     }

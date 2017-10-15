@@ -23,9 +23,10 @@ public class Calculator {
             }
             else if(text.contains("\n"))
             {
-                String [] numbers = text.split("\n");
-                
-                return sum(numbers);
+                String [] strNums = text.split("\n");
+                int [] numbers = stringArrToInt (strNums);
+                checkForNegativeNums(numbers);
+                return sum(strNums);
             }
             
 
@@ -77,6 +78,7 @@ public class Calculator {
                 N++;
             }
         }
+
         if(N > 0)
         {
             throw new IllegalArgumentException("Negatives not allowed: -1");

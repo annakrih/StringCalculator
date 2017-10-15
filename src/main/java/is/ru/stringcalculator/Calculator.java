@@ -19,14 +19,14 @@ public class Calculator {
                 String [] strNums = text.split(",");
                 int [] numbers = stringArrToInt (strNums);
                 checkForNegativeNums(numbers);
-                return sum(strNums);
+                return sum(numbers);
             }
             else if(text.contains("\n"))
             {
                 String [] strNums = text.split("\n");
                 int [] numbers = stringArrToInt (strNums);
                 checkForNegativeNums(numbers);
-                return sum(strNums);
+                return sum(numbers);
             }
             
 
@@ -38,11 +38,11 @@ public class Calculator {
         return Integer.parseInt(number);
     }
     
-    private static int sum(String [] numbers) {
+    private static int sum(int [] numbers) {
         int total = 0;
-        for (String number : numbers)
+        for (int number : numbers)
         {
-            total += toInt(number);
+            total += number;
         }
         return total;
     }
@@ -55,7 +55,7 @@ public class Calculator {
         {
             if(text.contains("\n"))
             {
-                String [] numbers = str.split("\n");
+                int [] numbers = stringArrToInt(str.split("\n"));
                 sum += sum(numbers);
             }
             else

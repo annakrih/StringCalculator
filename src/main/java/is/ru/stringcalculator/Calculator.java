@@ -9,7 +9,26 @@ public class Calculator {
         }
         else
         {
-            if(text.contains(","))
+            if(text.contains(",") && text.contains("\n"))
+            {
+                String [] strings = text.split(",");
+                int sum = 0;
+                for(String str : strings)
+                {
+                    if(text.contains("\n"))
+                    {
+                        String [] numbers = str.split("\n");
+                        sum += sum(numbers);
+                    }
+                    else
+                    {
+                        sum += toInt(str);
+                    }
+                }
+                return sum;
+            }
+            
+            else if(text.contains(","))
             {
                 String [] numbers = text.split(",");
                 return sum(numbers);
@@ -19,6 +38,8 @@ public class Calculator {
                 String [] numbers = text.split("\n");
                 return sum(numbers);
             }
+            
+
             
             return 1;
         }

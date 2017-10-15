@@ -32,6 +32,12 @@ public class CalculatorTest {
     public void testNewLineAsSeperator() {
         assertEquals(4, Calculator.add("1\n3"));
     }
+    
+    @Test
+    public void testNewLineThenCommaSeperator() {
+        assertEquals(6, Calculator.add("1,2\n3"));
+    }
 }
+
 
 

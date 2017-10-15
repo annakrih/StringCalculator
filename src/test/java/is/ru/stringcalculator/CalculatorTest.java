@@ -58,6 +58,11 @@ public class CalculatorTest {
     public void testMultipleNegNums() {
         assertEquals("Negatives not allowed: -4,-5", Calculator.add("2,-4,3,-5"));
     }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testMultipleNegNumsWithCommaAndNewLine() {
+        assertEquals("Negatives not allowed: -4,-5", Calculator.add("2,-4\n3,-5"));
+    }
 
 }
 

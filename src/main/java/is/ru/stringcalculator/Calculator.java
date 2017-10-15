@@ -8,11 +8,6 @@ public class Calculator {
             return 0;
         }
         
-        if(text.contains(",") && text.contains("\n"))
-        {
-            return addTextWithCommasAndNewLine(text);
-        }
-        
         String [] strNums = splitText(text);
         
         int [] numbers = stringArrToInt (strNums);
@@ -34,23 +29,56 @@ public class Calculator {
         return total;
     }
     
-    private static int addTextWithCommasAndNewLine(String text)
+    private static String[] splitTextWithCommaAndNewLine(String text)
     {
         String [] strings = text.split(",");
-        int sum = 0;
+        int arrCap = strings.length * 2;
+        String [] results = new String[arrCap];
+        int n = 0; //indexes used in results[]
         for(String str : strings)
         {
             if(text.contains("\n"))
             {
-                int [] numbers = stringArrToInt(str.split("\n"));
-                sum += sum(numbers);
+                String [] numbers = str.split("\n");
+                for (String num : numbers)
+                {
+                    results[n] = num;
+                    n++;
+                    if(n == arrCap)
+                    {
+                        arrCap = arrCap*2;
+                        String [] temp = results;
+                        results = new String[arrCap];
+                        for(int i = 0; i < temp.length; i++)
+                        {
+                            results[i] = temp[i];
+                        }
+                    }
+                }
+                
             }
             else
             {
-                sum += toInt(str);
+                results[n] = str;
+                n++;
+                if(n == arrCap)
+                {
+                    arrCap = arrCap*2;
+                    String [] temp = results;
+                    results = new String[arrCap];
+                    for(int i = 0; i < temp.length; i++)
+                    {
+                        results[i] = temp[i];
+                    }
+                }
             }
         }
-        return sum;
+        String [] res = new String [n];
+        for (int i = 0; i < n; i++)
+        {
+            res[i] = results[i];
+        }
+        return res;
     }
     
     private static void checkForNegativeNums(int [] numbers)
@@ -89,7 +117,12 @@ public class Calculator {
     
     private static String[] splitText(String text)
     {
-        if(text.contains(","))
+        if(text.contains(",") && text.contains("\n"))
+        {
+            return splitTextWithCommaAndNewLine(text);
+        }
+        
+        else if(text.contains(","))
         {
             String [] strNums = text.split(",");
             return strNums;

@@ -47,12 +47,7 @@ public class Calculator {
                     if(n == arrCap)
                     {
                         arrCap = arrCap*2;
-                        String [] temp = results;
-                        results = new String[arrCap];
-                        for(int i = 0; i < temp.length; i++)
-                        {
-                            results[i] = temp[i];
-                        }
+                        results = resizeArray(results, arrCap);
                     }
                 }
                 
@@ -64,21 +59,21 @@ public class Calculator {
                 if(n == arrCap)
                 {
                     arrCap = arrCap*2;
-                    String [] temp = results;
-                    results = new String[arrCap];
-                    for(int i = 0; i < temp.length; i++)
-                    {
-                        results[i] = temp[i];
-                    }
+                    results = resizeArray(results, arrCap);
                 }
             }
         }
-        String [] res = new String [n];
-        for (int i = 0; i < n; i++)
+        return resizeArray(results, n);
+    }
+    
+    private static String[] resizeArray(String[] array, int desiredSize)
+    {
+        String [] results = new String[desiredSize];
+        for(int i = 0; i < desiredSize; i++)
         {
-            res[i] = results[i];
+            results[i] = array[i];
         }
-        return res;
+        return results;
     }
     
     private static void checkForNegativeNums(int [] numbers)

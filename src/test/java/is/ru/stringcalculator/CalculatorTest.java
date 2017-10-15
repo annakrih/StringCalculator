@@ -45,9 +45,11 @@ public class CalculatorTest {
     
     //Liður 4
     @Test (expected = IllegalArgumentException.class)
-    public void testNegNum() {
+    public void testNegNumWithComma() {
         assertEquals("Negatives not allowed: -1", Calculator.add("-1,2"));
     }
+    
+
 }
 
 

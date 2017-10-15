@@ -17,28 +17,8 @@ public class Calculator {
             else if(text.contains(","))
             {
                 String [] strNums = text.split(",");
-                int [] numbers = new int[strNums.length];
-                for (int i = 0; i < strNums.length; i++){
-                    numbers[i] = toInt( strNums[i] );
-                }
-                
-                int [] negativeNums = new int [numbers.length];
-                int N = 0;
-                for (int i = 0; i < numbers.length; i++)
-                {
-                    if(numbers[i] < 0)
-                    {
-                        negativeNums[N] = numbers[i];
-                        N++;
-                    }
-                }
-                
-                
-                if(N > 0)
-                {
-                    throw new IllegalArgumentException("Negatives not allowed: -1");
-                }
-                
+                int [] numbers = stringArrToInt (strNums);
+                checkForNegativeNums(numbers);
                 return sum(strNums);
             }
             else if(text.contains("\n"))
@@ -83,6 +63,33 @@ public class Calculator {
             }
         }
         return sum;
+    }
+    
+    private static void checkForNegativeNums(int [] numbers)
+    {
+        int [] negativeNums = new int [numbers.length];
+        int N = 0;
+        for (int i = 0; i < numbers.length; i++)
+        {
+            if(numbers[i] < 0)
+            {
+                negativeNums[N] = numbers[i];
+                N++;
+            }
+        }
+        if(N > 0)
+        {
+            throw new IllegalArgumentException("Negatives not allowed: -1");
+        }
+    }
+    
+    private static int [] stringArrToInt(String[] strings)
+    {
+        int [] numbers = new int[strings.length];
+        for (int i = 0; i < strings.length; i++){
+            numbers[i] = toInt( strings[i] );
+        }
+        return numbers;
     }
     
     

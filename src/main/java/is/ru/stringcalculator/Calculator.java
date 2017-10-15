@@ -24,7 +24,10 @@ public class Calculator {
         int total = 0;
         for (int number : numbers)
         {
-            total += number;
+            if (number <= 1000)
+            {
+                total += number;
+            }
         }
         return total;
     }

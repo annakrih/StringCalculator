@@ -37,6 +37,11 @@ public class CalculatorTest {
     public void testNewLineThenCommaSeperator() {
         assertEquals(6, Calculator.add("1,2\n3"));
     }
+    
+    @Test
+    public void testCommaThenNewLineSeperator() {
+        assertEquals(6, Calculator.add("1\n2,3"));
+    }
 }
 
 

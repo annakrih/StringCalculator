@@ -81,7 +81,13 @@ public class Calculator {
 
         if(N > 0)
         {
-            throw new IllegalArgumentException("Negatives not allowed: -1");
+            String message = "Negatives not allowed: ";
+            message += negativeNums[0];
+            for(int i = 1; i < N; i++)
+            {
+                message = message + "," + negativeNums[i];
+            }
+            throw new IllegalArgumentException(message);
         }
     }
     

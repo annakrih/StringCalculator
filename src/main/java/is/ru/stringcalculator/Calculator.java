@@ -11,21 +11,7 @@ public class Calculator {
         {
             if(text.contains(",") && text.contains("\n"))
             {
-                String [] strings = text.split(",");
-                int sum = 0;
-                for(String str : strings)
-                {
-                    if(text.contains("\n"))
-                    {
-                        String [] numbers = str.split("\n");
-                        sum += sum(numbers);
-                    }
-                    else
-                    {
-                        sum += toInt(str);
-                    }
-                }
-                return sum;
+                return addTextWithCommasAndNewLine(text);
             }
             
             else if(text.contains(","))
@@ -58,6 +44,24 @@ public class Calculator {
         return total;
     }
     
+    private static int addTextWithCommasAndNewLine(String text)
+    {
+        String [] strings = text.split(",");
+        int sum = 0;
+        for(String str : strings)
+        {
+            if(text.contains("\n"))
+            {
+                String [] numbers = str.split("\n");
+                sum += sum(numbers);
+            }
+            else
+            {
+                sum += toInt(str);
+            }
+        }
+        return sum;
+    }
     
     
 }

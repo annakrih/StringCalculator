@@ -7,31 +7,18 @@ public class Calculator {
         {
             return 0;
         }
-        else
+        
+        if(text.contains(",") && text.contains("\n"))
         {
-            if(text.contains(",") && text.contains("\n"))
-            {
-                return addTextWithCommasAndNewLine(text);
-            }
-            
-            else if(text.contains(","))
-            {
-                String [] strNums = text.split(",");
-                int [] numbers = stringArrToInt (strNums);
-                checkForNegativeNums(numbers);
-                return sum(numbers);
-            }
-            else if(text.contains("\n"))
-            {
-                String [] strNums = text.split("\n");
-                int [] numbers = stringArrToInt (strNums);
-                checkForNegativeNums(numbers);
-                return sum(numbers);
-            }
-            
-
-            return 1;
+            return addTextWithCommasAndNewLine(text);
         }
+        
+        String [] strNums = splitText(text);
+        
+        int [] numbers = stringArrToInt (strNums);
+        checkForNegativeNums(numbers);
+        return sum(numbers);
+
     }
     
     private static int toInt(String number) {
@@ -100,6 +87,23 @@ public class Calculator {
         return numbers;
     }
     
+    private static String[] splitText(String text)
+    {
+        if(text.contains(","))
+        {
+            String [] strNums = text.split(",");
+            return strNums;
+        }
+        else if(text.contains("\n"))
+        {
+            String [] strNums = text.split("\n");
+            return strNums;
+        }
+        
+        String [] strNums = new String [1];
+        strNums[0] = text;
+        return strNums;
+    }
     
 }
 

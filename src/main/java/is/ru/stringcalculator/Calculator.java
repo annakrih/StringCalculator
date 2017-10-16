@@ -3,31 +3,17 @@ package is.ru.stringcalculator;
 public class Calculator {
 
     public static int add (String text) {
-        if(text.equals(""))
-        {
+       
+        if(text.equals("")) {
             return 0;
         }
-        
-        
-        if(text.length() > 2)
-        {
-            if(text.charAt(0) == '/' && text.charAt(1) == '/')
-           {
-                String[] temp = text.split("\n");
-                String delim = temp[0].substring(2);
-                String[] result = temp[1].split(delim);
-                return sum(stringArrToInt(result));
-                
-            }
-        }
-        
         
         String [] strNums = splitText(text);
         
         int [] numbers = stringArrToInt (strNums);
         checkForNegativeNums(numbers);
+        
         return sum(numbers);
-
     }
     
     private static int toInt(String number) {
@@ -46,35 +32,28 @@ public class Calculator {
         return total;
     }
     
-    private static String[] splitTextWithCommaAndNewLine(String text)
-    {
+    private static String[] splitTextWithCommaAndNewLine(String text) {
         String [] strings = text.split(",");
         int arrCap = strings.length * 2;
         String [] results = new String[arrCap];
         int n = 0; //indexes used in results[]
-        for(String str : strings)
-        {
-            if(text.contains("\n"))
-            {
+        for(String str : strings) {
+            if(text.contains("\n")) {
                 String [] numbers = str.split("\n");
-                for (String num : numbers)
-                {
+                for (String num : numbers) {
                     results[n] = num;
                     n++;
-                    if(n == arrCap)
-                    {
+                    if(n == arrCap) {
                         arrCap = arrCap*2;
                         results = resizeArray(results, arrCap);
                     }
                 }
                 
             }
-            else
-            {
+            else {
                 results[n] = str;
                 n++;
-                if(n == arrCap)
-                {
+                if(n == arrCap) {
                     arrCap = arrCap*2;
                     results = resizeArray(results, arrCap);
                 }
@@ -83,18 +62,15 @@ public class Calculator {
         return resizeArray(results, n);
     }
     
-    private static String[] resizeArray(String[] array, int desiredSize)
-    {
+    private static String[] resizeArray(String[] array, int desiredSize) {
         String [] results = new String[desiredSize];
-        for(int i = 0; i < desiredSize; i++)
-        {
+        for(int i = 0; i < desiredSize; i++) {
             results[i] = array[i];
         }
         return results;
     }
     
-    private static void checkForNegativeNums(int [] numbers)
-    {
+    private static void checkForNegativeNums(int [] numbers) {
         int [] negativeNums = new int [numbers.length];
         int N = 0;
         for (int i = 0; i < numbers.length; i++)
@@ -129,7 +105,16 @@ public class Calculator {
     
     private static String[] splitText(String text)
     {
-            
+        if(text.length() > 2)
+        {
+            if(text.charAt(0) == '/' && text.charAt(1) == '/')
+            {
+                String[] temp = text.split("\n");
+                String delim = temp[0].substring(2);
+                return temp[1].split(delim);
+            }
+        }
+        
         if(text.contains(",") && text.contains("\n"))
         {
             return splitTextWithCommaAndNewLine(text);

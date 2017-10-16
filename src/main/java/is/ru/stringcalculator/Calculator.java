@@ -8,6 +8,20 @@ public class Calculator {
             return 0;
         }
         
+        
+        if(text.length() > 2)
+        {
+            if(text.charAt(0) == '/' && text.charAt(1) == '/')
+           {
+                String[] temp = text.split("\n");
+                String delim = temp[0].substring(2);
+                String[] result = temp[1].split(delim);
+                return sum(stringArrToInt(result));
+                
+            }
+        }
+        
+        
         String [] strNums = splitText(text);
         
         int [] numbers = stringArrToInt (strNums);
@@ -115,6 +129,7 @@ public class Calculator {
     
     private static String[] splitText(String text)
     {
+            
         if(text.contains(",") && text.contains("\n"))
         {
             return splitTextWithCommaAndNewLine(text);

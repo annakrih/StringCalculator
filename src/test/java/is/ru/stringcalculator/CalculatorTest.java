@@ -74,6 +74,12 @@ public class CalculatorTest {
     public void testIgnoreBigNumbers2() {
         assertEquals(1002, Calculator.add("1000,2"));
     }
+    
+    //Liður 6
+    @Test
+    public void testOneCharacterCustomDeliminator() {
+        assertEquals(3, Calculator.add("//;\n1;2"));
+    }
 }
 
 

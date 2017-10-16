@@ -80,6 +80,11 @@ public class CalculatorTest {
     public void testOneCharacterCustomDeliminator() {
         assertEquals(3, Calculator.add("//;\n1;2"));
     }
+    
+    @Test
+    public void testTwoCharacterCustomDeliminator() {
+        assertEquals(6, Calculator.add("//ab\n1ab2ab3"));
+    }
 }
 
 
